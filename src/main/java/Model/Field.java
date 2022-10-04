@@ -5,20 +5,25 @@ import java.util.Map;
 
 public class Field {
     private int [][] field;
-    private int [][] scores;
+    private int [] rowScores;
+    private int finalScore;
     private static final int FIELD_SIZE = 3;
 
     public Field(){
         field = new int[3][3];
-        scores = new int[3][1];
+        rowScores = new int[3];
     }
 
     public int[][] getField() {
         return field;
     }
 
-    public int[][] getScores() {
-        return scores;
+    public int[] getRowScores() {
+        return rowScores;
+    }
+
+    public int getFinalScore() {
+        return finalScore;
     }
 
     public void addToField(int row, int value){
@@ -29,10 +34,11 @@ public class Field {
             }
         }
         countRowScore(row);
+        countFinalScore();
     }
 
     public void countRowScore (int row){
-        scores[row][0] = 0;
+        rowScores[row] = 0;
         Map<Integer, Integer> values = new HashMap<>();
         for (int i = 0; i < FIELD_SIZE; i++){
             if(values.containsKey(field[row][i])){
@@ -43,17 +49,20 @@ public class Field {
         }
         for(Map.Entry<Integer, Integer> entry: values.entrySet()){
             if (entry.getValue() == 1){
-                scores[row][0]+= entry.getKey();
+                rowScores[row]+= entry.getKey();
             } else if(entry.getValue() == 2){
-                scores[row][0]+= (entry.getKey() * 2)*2;
+                rowScores[row]+= (entry.getKey() * 2)*2;
             }else if (entry.getValue() == 3){
-                scores[row][0]+= ((entry.getKey() * 2)*2)*2 + entry.getKey();
+                rowScores[row]+= ((entry.getKey() * 2)*2)*2 + entry.getKey();
             }
         }
-
-
-
     }
 
+    public void countFinalScore(){
+        finalScore = 0;
+        for (int i = 0; i < rowScores.length; i++){
+            finalScore+= rowScores[i];
+        }
+    }
 
 }
