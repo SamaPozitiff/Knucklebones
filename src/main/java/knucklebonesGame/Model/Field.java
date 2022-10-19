@@ -1,13 +1,30 @@
-package Model;
+package knucklebonesGame.Model;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.stereotype.Component;
+
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
-
+@Component
 public class Field {
     private int[][] field;
     private int[] rowScores;
     private int finalScore;
     private static final int FIELD_SIZE = 3;
+
+
+    @Bean ("allyField")
+    public Field getAllyField(){
+        return new Field();
+
+    }
+
+    @Bean("enemyField")
+        public Field getEnemyField(){
+            return new Field();
+    }
 
     public Field() {
         field = new int[3][3];
@@ -89,7 +106,5 @@ public class Field {
         countRowScore(row);
         countFinalScore();
     }
-
-
 
 }
