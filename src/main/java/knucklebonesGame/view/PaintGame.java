@@ -1,4 +1,4 @@
-package knucklebonesGame.View;
+package knucklebonesGame.view;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;

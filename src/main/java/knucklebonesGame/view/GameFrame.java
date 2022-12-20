@@ -1,4 +1,4 @@
-package knucklebonesGame.View;
+package knucklebonesGame.view;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
